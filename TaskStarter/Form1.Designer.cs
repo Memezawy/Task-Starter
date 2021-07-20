@@ -29,6 +29,7 @@ namespace TaskStarter
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.StartBtn = new System.Windows.Forms.Button();
             this.AddTaskBtn = new System.Windows.Forms.Button();
@@ -50,6 +51,7 @@ namespace TaskStarter
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -63,7 +65,7 @@ namespace TaskStarter
             this.StartBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.StartBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StartBtn.ForeColor = System.Drawing.Color.White;
-            this.StartBtn.Location = new System.Drawing.Point(57, 417);
+            this.StartBtn.Location = new System.Drawing.Point(57, 394);
             this.StartBtn.Name = "StartBtn";
             this.StartBtn.Size = new System.Drawing.Size(227, 129);
             this.StartBtn.TabIndex = 0;
@@ -106,7 +108,6 @@ namespace TaskStarter
             this.websiteTextBox.Name = "websiteTextBox";
             this.websiteTextBox.Size = new System.Drawing.Size(361, 29);
             this.websiteTextBox.TabIndex = 5;
-            this.websiteTextBox.TextChanged += new System.EventHandler(this.websiteTextBox_TextChanged);
             // 
             // removeTaskBtn
             // 
@@ -122,7 +123,7 @@ namespace TaskStarter
             this.removeTaskBtn.TabIndex = 8;
             this.removeTaskBtn.Text = "Remove Task";
             this.removeTaskBtn.UseVisualStyleBackColor = false;
-            this.removeTaskBtn.Click += new System.EventHandler(this.button1_Click);
+            this.removeTaskBtn.Click += new System.EventHandler(this.RemoveTask_Click);
             // 
             // taskListBox
             // 
@@ -136,7 +137,6 @@ namespace TaskStarter
             this.taskListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.taskListBox.Size = new System.Drawing.Size(578, 256);
             this.taskListBox.TabIndex = 10;
-            this.taskListBox.SelectedIndexChanged += new System.EventHandler(this.taskListBox_SelectedIndexChanged);
             // 
             // profileCreateBtn
             // 
@@ -144,7 +144,7 @@ namespace TaskStarter
             this.profileCreateBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
             this.profileCreateBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.profileCreateBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.profileCreateBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.profileCreateBtn.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
             this.profileCreateBtn.ForeColor = System.Drawing.Color.White;
             this.profileCreateBtn.Location = new System.Drawing.Point(63, 203);
             this.profileCreateBtn.Name = "profileCreateBtn";
@@ -162,7 +162,6 @@ namespace TaskStarter
             this.profileNameTextBox.Name = "profileNameTextBox";
             this.profileNameTextBox.Size = new System.Drawing.Size(210, 26);
             this.profileNameTextBox.TabIndex = 13;
-            this.profileNameTextBox.TextChanged += new System.EventHandler(this.profileNameTextBox_TextChanged);
             // 
             // deletProfileBtn
             // 
@@ -302,9 +301,9 @@ namespace TaskStarter
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(18, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(241, 32);
+            this.label2.Size = new System.Drawing.Size(179, 32);
             this.label2.TabIndex = 24;
-            this.label2.Text = "Task Starter v2.1";
+            this.label2.Text = "Task Starter";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel1
@@ -330,6 +329,12 @@ namespace TaskStarter
             this.label3.Text = "Issue? Contact me MemezawyBussiness@gmail.com";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // notifyIcon
+            // 
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "Task Starter";
+            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
+            // 
             // MainForm
             // 
             this.BackColor = System.Drawing.Color.Black;
@@ -353,7 +358,7 @@ namespace TaskStarter
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " Task Starter";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.Click += new System.EventHandler(this.MainForm_Click);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -385,6 +390,7 @@ namespace TaskStarter
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
     }
 }
 

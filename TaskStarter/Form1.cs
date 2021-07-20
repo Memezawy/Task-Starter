@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel.Design;
-using System.IO;
 using System.Windows.Forms;
 using static TaskStarter.Utiles;
 
@@ -8,7 +6,7 @@ namespace TaskStarter
 {
     public partial class MainForm : Form
     {
-        private readonly FormControls _formControls; 
+        private readonly FormControls _formControls;
         public MainForm()
         {
             InitializeComponent();
@@ -25,11 +23,6 @@ namespace TaskStarter
         {
             _formControls.AddWebsiteTask();
             SaveProfiles();
-        }
-        //Remove Task
-        private void button1_Click(object sender, EventArgs e)
-        {
-            _formControls.RemoveTask();
         }
 
         private void profileCreateBtn_Click(object sender, EventArgs e)
@@ -48,10 +41,6 @@ namespace TaskStarter
             AddApplicationToStartup();
         }
 
-        private void MainForm_Click(object sender, EventArgs e)
-        {
-        }
-
         private void EditBtn_Click(object sender, EventArgs e)
         {
             _formControls.EditProfileName();
@@ -68,24 +57,33 @@ namespace TaskStarter
             _formControls.AddFolderTask();
         }
 
-        private void taskListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void ProfilesComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _formControls.SelectProfile();
         }
 
-        private void profileNameTextBox_TextChanged(object sender, EventArgs e)
+        private void MainForm_Resize(object sender, EventArgs e)
         {
-
+            if (WindowState == FormWindowState.Minimized)
+            {
+                Hide();
+                notifyIcon.Visible = true;
+                //notifyIcon.BalloonTipTitle = "Task Starter";
+                //notifyIcon.BalloonTipText = "Task Starter is now minimized";
+                notifyIcon.ShowBalloonTip(10, "Task Starter", "Task Starter is now minimized", ToolTipIcon.Info);
+            }
         }
 
-        private void websiteTextBox_TextChanged(object sender, EventArgs e)
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            Show();
+            WindowState = FormWindowState.Normal;
+            notifyIcon.Visible = false;
+        }
 
+        private void RemoveTask_Click(object sender, EventArgs e)
+        {
+            _formControls.RemoveTask();
         }
     }
 }
